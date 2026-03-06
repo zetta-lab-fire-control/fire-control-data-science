@@ -1,5 +1,4 @@
 from pathlib import Path
-import os
 
 ROOT_DIR = Path(__file__).parent.absolute()
 DATA_DIRECTORY_PATH = ROOT_DIR / "data"

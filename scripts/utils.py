@@ -1,38 +1,51 @@
-# utils.py
 """
+utils.py
+-----------
 Módulo de utilitários para workflow de ciência de dados.
-Inclui: arquivo entrada/saida, auxiliadores de dataframe, plotting, logging, timers, e utilitários comuns de préprocessamento.
+Inclui: 
+    - Arquivo entrada/saida
+    - auxiliadores de dataframe
+    - plotting, logging, timers, e utilitários comuns de préprocessamento.
 """
 
-import os
-import pickle
+import requests
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+from pathlib import Path
 
-# -----------------------------
-# Auxiliadores de escrita e carregamento de arquivos
-# -----------------------------
-def save_pickle(obj, file_path):
-    """Save a Python object to a pickle file."""
-    os.makedirs(os.path.dirname(file_path), exist_ok=True)
-    with open(file_path, 'wb') as f:
-        pickle.dump(obj, f)
+# -------------------------
+#  Auxiliador de manipulação de requisição HTTP
+# -------------------------
+def download_file(url: str, file_name : str, save_path: Path | str):
+    """
+    Baixa o arquivo do URL e o salva no caminho local
 
-def load_pickle(file_path):
-    """Load a Python object from a pickle file."""
-    with open(file_path, 'rb') as f:
-        return pickle.load(f)
+    Parameters:
+        url (str): URL do arquivo a ser baixado
+        file_name (str): Nome do arquivo
+        save_path (Path | str): Caminho onde o arquivo será salvo.
+    """
 
-def ensure_dir(path):
-    """Create directory if it doesn't exist."""
-    os.makedirs(path, exist_ok=True)
+    # Fazer requisição
+    response = requests.get(url, stream=True)
+    response.raise_for_status()  # Acionar o erro se o download falhar
+
+    # Salvar conteudo do arquivo localmente
+    with open(f"{save_path}/{file_name}", 'wb') as f:
+        for chunk in response.iter_content(chunk_size=8192):
+            f.write(chunk)
+
+    print(f"Arquivo baixado e salvo em: {save_path}/{file_name}")
+
 
 # -----------------------------
 # Auxiliadores de Dataframe
 # -----------------------------
 def describe_df(df):
-    """Print shape, info, and description of a DataFrame."""
+    """
+    Imprime as informações, shape e descrição de um DataFrame
+    """
     print(f"Shape: {df.shape}\n")
     print("Info:")
     print(df.info())
@@ -40,7 +53,9 @@ def describe_df(df):
     print(df.describe())
 
 def missing_summary(df):
-    """Return missing values count and percentage per column."""
+    """
+    Retorna os valores nulos e porcentagem por coluna
+    """
     total = df.isnull().sum()
     percent = (total / len(df)) * 100
     return pd.DataFrame({'missing': total, 'percent': percent}).sort_values('percent', ascending=False)
@@ -90,15 +105,21 @@ def timer(func):
 # Funções utilitárias
 # -----------------------------
 def ensure_columns(df: pd.DataFrame, columns: list[str]):
-    """Check if columns exist in DataFrame, raise error if missing."""
+    """
+    Checa se colunas existem no DataFrame, retorna um erro se não possuir
+    """
     missing = [col for col in columns if col not in df.columns]
     if missing:
         raise ValueError(f"Missing columns: {missing}")
 
 def unique_values_summary(df: pd.DataFrame, columns: list[str]):
-    """Return the number of unique values per specified column."""
+    """
+    Retorna o número de valores únicos por coluna especifica
+    """
     return {col: df[col].nunique() for col in columns}
 
 def value_counts_summary(df: pd.DataFrame, columns: list[str]):
-    """Return value counts for multiple columns."""
+    """
+    Retorna a contagem de valores por múltiplas colunas
+    """
     return {col: df[col].value_counts() for col in columns}

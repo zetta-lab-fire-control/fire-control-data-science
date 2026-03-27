@@ -1,3 +1,5 @@
+**<u>Inicio</u>** | [Data](./data/README.md) | [Features](./features/README.md) | [Notebooks](./notebooks/README.md) | [Scripts](./scripts/README.md) | [Reports](./reports/README.md) | [Interactive Reports](./interactive_reports/README.md) | [Dashboard](./dashboard/README.md) | [Models](./models/README.md) | [Metrics](./metrics/README.md) | [API](./api/README.md)
+
 # Desafio-3-ZettaLab-2ed
 Combate e Prevenção de Incêndios
 
@@ -12,12 +14,14 @@ Combate e Prevenção de Incêndios
 
 ## Estrutura do Projeto
 
-* [Scripts](./scripts/README.md): Módulos reutilizaveis.
-* [Dados](./data/README.md): Descrições e Informações sobre os Dados.
-* [Notebooks](./notebooks/README.md): dasdasjdsadalçskdlçsaka.
-* [Reports](./reports/README.md):dasdasjdsadalçskdlçsaka.
-* [Interactive Reports](./reports/README.md): dasdasjdsadalçskdlçsaka.
-* [Models](./models/README.md): dzdadadasdasdsadsa.
+* [Data](./data/README.md): Contém todos os conjuntos de dados usados no projeto, incluindo dados brutos (raw) e processados (processed)..
+* [Features](./features/README.md): Contém todos os conjuntos de dados transformados, limpados, reduzidos e integrados, a qual serão utilizados para o treinamento, teste e validação dos modelos de Machine Learning.
+* [Scripts](./scripts/README.md): Scripts automatizados que realizam tarefas do projeto de forma repetível, como pré-processamento, treinamento de modelos, geração de relatórios e execução de pipelines completos.
+* [Notebooks](./notebooks/README.md): Notebooks interativos utilizados para exploração de dados (EDA), visualizações, testes de hipóteses e experimentos rápidos. Servem para documentar análises e auxiliar na tomada de decisões antes de automatizar processos.
+* [Dashboard](./dashboard/README.md): Aplicações interativas que consolidam métricas, indicadores e insights em tempo real. Auxiliam no monitoramento de modelos e na visualização rápida de resultados para suporte à decisão.
+* [Reports](./reports/README.md):Relatórios estáticos em formatos como PDF, HTML ou PDF que resumem análises, resultados de modelos e insights. Usados para documentar o projeto e comunicar descobertas a stakeholders..
+* [Interactive Reports](./reports/README.md): Relatórios dinâmicos que permitem interação com os dados, atualização de visualizações e filtragem de informações, geralmente construídos com ferramentas como Plotly, Streamlit ou Shiny.
+* [Models](./models/README.md): Contém modelos treinados, pipelines completos e arquivos de configuração para reprodução de resultados. Inclui arquivos serializados, checkpoints e definições de hiperparâmetros..
 
 ## Metodologia CRISP-DM
 
@@ -42,17 +46,23 @@ Combate e Prevenção de Incêndios
 
 ## Instalação
 
+Clone o repositório e entre nele:
+
 ```bash
 git clone git@github.com:EstevaoAugusto/fire-control-data-science.git
 cd fire-control-data-science/
 ```
 
+Instale todas as depêndencias necessárias do projeto utilizando o 'uv':
+
 ```bash
 uv sync
 
-# Opcional
+# Opcional (Entrar no ambiente virtual, uv faz isso automaticamente)
 source .venv/Scripts/activate
 ```
+
+
 
 ```bash
 python config_path.py

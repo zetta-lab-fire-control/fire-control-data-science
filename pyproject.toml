@@ -5,10 +5,14 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "asttokens>=3.0.1",
     "basedosdados>=2.0.3",
+    "comm>=0.2.3",
     "dotenv>=0.9.9",
+    "fastapi>=0.135.2",
     "matplotlib>=3.10.8",
     "numpy>=2.4.2",
+    "odfpy>=1.4.1",
     "pandas>=2.3.3",
     "plotly>=6.6.0",
     "requests>=2.32.5",

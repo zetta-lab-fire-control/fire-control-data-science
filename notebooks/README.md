@@ -17,4 +17,20 @@ Este notebook cria as variáveis inteligentes que sustentam as regras de negóci
 
 ## 4_ai.ipynb
 
-Destinado à inteligência analítica e modelos preditivos, este notebook processa o status das ocorrências e as imagens enviadas pelos usuários. Ele pode conter modelos para classificar automaticamente a intensidade do foco com base em evidências visuais ou prever a propagação do incêndio para auxiliar o Painel Operacional dos Bombeiros na tomada de decisão e priorização do atendimento.
+Destinado à inteligência analítica e modelos preditivos, este notebook implementa modelos de Machine Learning para análise e previsão de queimadas em Minas Gerais. Os modelos utilizam dados históricos de focos de queimada e variáveis meteorológicas para auxiliar na tomada de decisão operacional.
+
+### Modelos Implementados:
+
+1. **LightGBM - Classificação de Intensidade de Queimadas**
+   - **Função**: Classifica a intensidade dos focos de queimada em três categorias (Baixo, Médio, Alto) com base no Fire Radiative Power (FRP). Utiliza cortes definidos: Baixo (<15 FRP), Médio (15-80 FRP), Alto (>80 FRP).
+   - **Objetivo**: Auxiliar na priorização de recursos de combate a incêndios, identificando focos de alta intensidade que requerem atenção imediata.
+   - **Features Utilizadas**: Satelite, Nome_Município, Bioma, DiaSemChuva, Precipitacao, Latitude, Longitude, Mes, Hora_decimal, ID_Município.
+   - **Configuração**: Modelo multiclasse com balanceamento de classes, early stopping e avaliação em dados de 2025.
+
+2. **LightGBM - Classificação de Risco de Fogo**
+   - **Função**: Classifica o risco de ocorrência de fogo em binário (Sem Fogo ou Fogo) com base na variável RiscoFogo (binarizada em >0.5).
+   - **Objetivo**: Prever áreas com alto risco de incêndio para prevenção e monitoramento proativo.
+   - **Features Utilizadas**: Satelite, Nome_Município, Bioma, DiaSemChuva, Precipitacao, Latitude, Longitude, Mes, Hora_decimal, ID_Município.
+   - **Configuração**: Modelo binário com early stopping, otimizado para grandes volumes de dados.
+
+Os modelos são treinados com dados históricos (2022-2024) e avaliados em dados de 2025, garantindo uma divisão cronológica para evitar data leakage. Inclui visualizações como matrizes de confusão, mapas de distribuição geográfica e análises sazonais para validar o desempenho.

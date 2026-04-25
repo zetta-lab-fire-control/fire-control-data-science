@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Query
-from schemas.schemas import EntradaPredicao, ResultadoPredicao, TipoModelo
-import services.predicao_service as svc
+from api.schemas.schemas import EntradaPredicao, ResultadoPredicao, TipoModelo
+import api.services.predicao_service as svc
 
 router = APIRouter(prefix="/predicao", tags=["Predição"])
 

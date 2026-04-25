@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Query
-from schemas.schemas import InfoDataset, AmostraDataset, FiltrosDataset
-import services.dados_service as svc
+from api.schemas.schemas import InfoDataset, AmostraDataset, FiltrosDataset
+import api.services.dados_service as svc
 
 router = APIRouter(prefix="/dados", tags=["Dados"])
 

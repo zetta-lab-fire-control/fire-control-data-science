@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from routers import dados, modelos, predicao, metricas
+from api.routers import dados, modelos, predicao, metricas
 
 app = FastAPI(
     title="API de Queimadas — LightGBM",

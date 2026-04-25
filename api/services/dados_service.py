@@ -4,8 +4,8 @@ import pandas as pd
 from fastapi import HTTPException
 from pathlib import Path
 
-import config_path_api
-from schemas.schemas import InfoDataset, AmostraDataset, FiltrosDataset
+import api.config_path_api as config_path_api
+from api.schemas.schemas import InfoDataset, AmostraDataset, FiltrosDataset
 
 # ──────────────────────────────────────────────
 #  Visualização de diretorios
@@ -103,7 +103,7 @@ def obter_amostra(n_linhas: int = 10) -> AmostraDataset:
     df = _carregar_df()
     return AmostraDataset(
         colunas      = df.columns.tolist(),
-        dados        = df.head(n_linhas).fillna("null").to_dict(orient="records"),
+        dados        = df.head(n_linhas).to_dict(orient="records"),
         total_linhas = len(df),
     )
 

@@ -3,9 +3,11 @@ from __future__ import annotations
 import os
 import joblib
 from fastapi import HTTPException
+import lightgbm
 import scripts.modeling as modeling
-from config_path_api import MODELS_DIRECTORY_PATH
-from schemas.schemas import InfoModelo, ListaModelos, TipoModelo
+from api.config_path_api import MODELS_DIRECTORY_PATH
+from api.schemas.schemas import InfoModelo, ListaModelos, TipoModelo
+from fastapi.encoders import jsonable_encoder
 
 # ──────────────────────────────────────────────
 #  Cache de modelos em memória
@@ -115,7 +117,10 @@ def listar_modelos() -> ListaModelos:
     model_infos = []
     for arq in arquivos:
         _, model_info = modeling.carregar_modelo_e_info(MODELS_DIRECTORY_PATH / arq)
-        model_infos.append(model_info)
+        
+        
+        model_infos.append(model_info.__dict__)  # Converte para dict usando o método jsonable() do Pydantic
+    
     
     return ListaModelos(
         total=len(model_infos),

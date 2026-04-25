@@ -3,9 +3,9 @@ from __future__ import annotations
 import pandas as pd
 from fastapi import HTTPException
 
-from schemas.schemas import EntradaPredicao, ResultadoPredicao, TipoModelo
-from services.modelos_service import carregar_modelo
-from services.dados_service import _carregar_df
+from api.schemas.schemas import EntradaPredicao, ResultadoPredicao, TipoModelo
+from api.services.modelos_service import carregar_modelo
+from api.services.dados_service import _carregar_df
 
 
 def realizar_predicao(nome_modelo: str, entrada: EntradaPredicao) -> ResultadoPredicao:

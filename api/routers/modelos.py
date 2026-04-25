@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Query
-from schemas.schemas import InfoModelo, ListaModelos
-import services.modelos_service as svc
+from api.schemas.schemas import InfoModelo, ListaModelos
+import api.services.modelos_service as svc
+import lightgbm
 
 router = APIRouter(prefix="/modelos", tags=["Modelos"])
 

@@ -12,14 +12,14 @@ from sklearn.metrics import (
     mean_absolute_error, mean_squared_error, r2_score,
 )
 
-from config_path_api import METRICS_DIRECTORY_PATH
-from schemas.schemas import (
+from api.config_path_api import METRICS_DIRECTORY_PATH
+from api.schemas.schemas import (
     EntradaAvaliacao, ResultadoMetricas,
     MetricasClassificacao, MetricasRegressao,
     TipoModelo,
 )
-from services.modelos_service import carregar_modelo
-from services.dados_service import _carregar_df
+from api.services.modelos_service import carregar_modelo
+from api.services.dados_service import _carregar_df
 
 
 def _mape(y_true, y_pred) -> float | None:
